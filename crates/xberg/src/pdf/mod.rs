@@ -7,6 +7,7 @@
 //! - **Text extraction**: Extract text content from PDFs using `xberg_native_pdf`
 //! - **Metadata extraction**: Parse PDF metadata (title, author, creation date, etc.)
 //! - **Image extraction**: Extract embedded images from PDF pages
+//! - **Page rendering**: Open a PDF once and render arbitrary pages to PNG
 //! - **Error handling**: Comprehensive PDF-specific error types
 #[cfg(feature = "pdf")]
 /// PDF bookmark (outline/table-of-contents) extraction.
@@ -34,6 +35,8 @@ pub(crate) mod native_text;
 /// PDF page rendering to raster images.
 pub mod render;
 #[cfg(feature = "pdf")]
+mod render_session;
+#[cfg(feature = "pdf")]
 /// Drawn ruling-line detection shared by the layout gate and the table gate.
 pub(crate) mod rules;
 #[cfg(feature = "pdf")]
@@ -56,3 +59,5 @@ pub(crate) mod xref_revisions;
 pub use crate::core::config::HierarchyConfig;
 #[cfg(feature = "pdf")]
 pub use error::PdfError;
+#[cfg(feature = "pdf")]
+pub use render_session::PdfRenderSession;
